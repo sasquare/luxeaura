@@ -35,13 +35,13 @@ export default function PerfumeRequestForm() {
   }
 
   const fieldCls = 'w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2'
-  const fieldStyle = { borderColor: '#e8d5c8', color: '#5C1A2B', '--tw-ring-color': '#C9927C' }
+  const fieldStyle = { borderColor: '#e2d9c0', color: '#0B0B0B', '--tw-ring-color': '#D4AF37' }
 
   return (
-    <div id="perfume-request-form" className="rounded-2xl overflow-hidden" style={{ border: '1px solid #e8d5c8' }}>
+    <div id="perfume-request-form" className="rounded-2xl overflow-hidden" style={{ border: '1px solid #e2d9c0' }}>
       {/* Header */}
-      <div className="px-6 py-5" style={{ background: 'linear-gradient(135deg, #5C1A2B, #3D0A14)' }}>
-        <p className="text-xs uppercase tracking-widest mb-1" style={{ color: '#C9927C' }}>Can't find it?</p>
+      <div className="px-6 py-5" style={{ background: 'linear-gradient(135deg, #0B0B0B, #111111)' }}>
+        <p className="text-xs uppercase tracking-widest mb-1" style={{ color: '#D4AF37' }}>Can't find it?</p>
         <h3
           className="text-xl font-bold text-white"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -58,20 +58,20 @@ export default function PerfumeRequestForm() {
           <div className="text-center py-8">
             <div
               className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg, #C9927C, #a07060)' }}
+              style={{ background: 'linear-gradient(135deg, #D4AF37, #b8962e)' }}
             >
               <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h4 className="font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>
+            <h4 className="font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
               Request Sent! ✦
             </h4>
-            <p className="text-sm mb-4" style={{ color: '#9a6a5a' }}>Joy will be in touch on WhatsApp shortly.</p>
+            <p className="text-sm mb-4" style={{ color: '#7a6a3a' }}>Joy will be in touch on WhatsApp shortly.</p>
             <button
               onClick={() => setDone(false)}
               className="text-sm font-medium"
-              style={{ color: '#C9927C' }}
+              style={{ color: '#D4AF37' }}
             >
               Submit another request
             </button>
@@ -80,19 +80,19 @@ export default function PerfumeRequestForm() {
           <form onSubmit={submit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Your Name *</label>
+                <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Your Name *</label>
                 <input name="name" value={form.name} onChange={update} required
                   className={fieldCls} style={fieldStyle} placeholder="Full name" />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Phone *</label>
+                <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Phone *</label>
                 <input name="phone" value={form.phone} onChange={update} required
                   className={fieldCls} style={fieldStyle} placeholder="08xx xxx xxxx" />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>
+              <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>
                 Describe your ideal fragrance *
               </label>
               <textarea
@@ -103,17 +103,17 @@ export default function PerfumeRequestForm() {
             </div>
 
             <div>
-              <label className="block text-xs font-medium mb-2" style={{ color: '#5C1A2B' }}>
+              <label className="block text-xs font-medium mb-2" style={{ color: '#0B0B0B' }}>
                 Budget range (optional)
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs mb-1" style={{ color: '#9a6a5a' }}>Min (₦)</label>
+                  <label className="block text-xs mb-1" style={{ color: '#7a6a3a' }}>Min (₦)</label>
                   <input name="minPrice" type="number" min="0" value={form.minPrice} onChange={update}
                     className={fieldCls} style={fieldStyle} placeholder="e.g. 5000" />
                 </div>
                 <div>
-                  <label className="block text-xs mb-1" style={{ color: '#9a6a5a' }}>Max (₦)</label>
+                  <label className="block text-xs mb-1" style={{ color: '#7a6a3a' }}>Max (₦)</label>
                   <input name="maxPrice" type="number" min="0" value={form.maxPrice} onChange={update}
                     className={fieldCls} style={fieldStyle} placeholder="e.g. 20000" />
                 </div>
@@ -123,7 +123,7 @@ export default function PerfumeRequestForm() {
             <button
               type="submit" disabled={saving}
               className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-60"
-              style={{ background: 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' }}
+              style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}
             >
               {saving ? 'Sending…' : 'Send Request via WhatsApp ✦'}
             </button>

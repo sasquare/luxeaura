@@ -10,10 +10,10 @@ const ICONS = {
 
 export default function ShopByOccasionWidget({ activeOccasion, onSelect }) {
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #e8d5c8', background: '#FDF6EC' }}>
+    <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #e2d9c0', background: '#F7F3EA' }}>
       {/* Header */}
-      <div className="px-5 py-3" style={{ background: 'linear-gradient(135deg, #5C1A2B, #3D0A14)' }}>
-        <p className="text-xs uppercase tracking-widest" style={{ color: '#C9927C' }}>Shop by Occasion</p>
+      <div className="px-5 py-3" style={{ background: 'linear-gradient(135deg, #0B0B0B, #111111)' }}>
+        <p className="text-xs uppercase tracking-widest" style={{ color: '#D4AF37' }}>Shop by Occasion</p>
       </div>
 
       <div className="p-4 space-y-2">
@@ -25,9 +25,9 @@ export default function ShopByOccasionWidget({ activeOccasion, onSelect }) {
               onClick={() => onSelect(isActive ? null : occ)}
               className="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-all"
               style={{
-                background: isActive ? 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' : 'white',
-                color: isActive ? '#fff' : '#5C1A2B',
-                border: isActive ? 'none' : '1px solid #e8d5c8',
+                background: isActive ? 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' : 'white',
+                color: isActive ? '#fff' : '#0B0B0B',
+                border: isActive ? 'none' : '1px solid #e2d9c0',
               }}
             >
               <span>{ICONS[occ]}</span>
@@ -45,7 +45,7 @@ export default function ShopByOccasionWidget({ activeOccasion, onSelect }) {
           <button
             onClick={() => onSelect(null)}
             className="w-full text-center text-xs py-1.5 transition-colors"
-            style={{ color: '#9a6a5a' }}
+            style={{ color: '#7a6a3a' }}
           >
             ✕ Clear filter
           </button>

@@ -35,10 +35,10 @@ export default function BlogSidebar() {
   }, [])
 
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: '#FDF6EC', border: '1px solid #e8d5c8' }}>
+    <div className="rounded-2xl overflow-hidden" style={{ background: '#F7F3EA', border: '1px solid #e2d9c0' }}>
       {/* Header */}
-      <div className="px-5 py-4" style={{ background: 'linear-gradient(135deg, #5C1A2B, #3D0A14)' }}>
-        <p className="text-xs uppercase tracking-widest mb-0.5" style={{ color: '#C9927C' }}>Joy's</p>
+      <div className="px-5 py-4" style={{ background: 'linear-gradient(135deg, #0B0B0B, #111111)' }}>
+        <p className="text-xs uppercase tracking-widest mb-0.5" style={{ color: '#D4AF37' }}>Joy's</p>
         <h3
           className="text-base font-bold text-white"
           style={{ fontFamily: "'Playfair Display', serif" }}
@@ -58,25 +58,25 @@ export default function BlogSidebar() {
             <div
               key={post.id}
               className="rounded-xl overflow-hidden cursor-pointer transition-all"
-              style={{ border: '1px solid #e8d5c8' }}
+              style={{ border: '1px solid #e2d9c0' }}
             >
               <button
                 onClick={() => setActive(isOpen ? null : post.id)}
                 className="w-full text-left px-4 py-3 flex items-start justify-between gap-2"
-                style={{ background: isOpen ? '#FEF3EE' : 'white' }}
+                style={{ background: isOpen ? '#F0EBE0' : 'white' }}
               >
                 <div>
                   <p
                     className="text-sm font-semibold leading-snug"
-                    style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}
+                    style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}
                   >
                     {post.title}
                   </p>
-                  {date && <p className="text-xs mt-0.5" style={{ color: '#C9927C' }}>{date}</p>}
+                  {date && <p className="text-xs mt-0.5" style={{ color: '#D4AF37' }}>{date}</p>}
                 </div>
                 <svg
                   className="w-4 h-4 flex-shrink-0 mt-0.5 transition-transform"
-                  style={{ color: '#C9927C', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                  style={{ color: '#D4AF37', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                   fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -84,8 +84,8 @@ export default function BlogSidebar() {
               </button>
 
               {isOpen && post.excerpt && (
-                <div className="px-4 pb-4" style={{ background: '#FEF3EE' }}>
-                  <p className="text-sm leading-relaxed" style={{ color: '#7a4a3a' }}>
+                <div className="px-4 pb-4" style={{ background: '#F0EBE0' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: '#4a4a2a' }}>
                     {trimWords(post.excerpt, 200)}
                   </p>
                 </div>

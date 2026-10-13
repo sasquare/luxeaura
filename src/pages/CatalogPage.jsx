@@ -71,7 +71,7 @@ export default function CatalogPage() {
   })
 
   return (
-    <div style={{ background: '#FDF6EC', minHeight: '100vh' }}>
+    <div style={{ background: '#F7F3EA', minHeight: '100vh' }}>
       <Navbar />
       <HeroCarousel />
 
@@ -86,8 +86,8 @@ export default function CatalogPage() {
               className="px-3 py-1.5 rounded-full text-xs font-medium transition-all"
               style={
                 activeCategory === cat && !activeOccasion
-                  ? { background: '#5C1A2B', color: '#fff' }
-                  : { background: '#FEF3EE', color: '#5C1A2B', border: '1px solid #e8d5c8' }
+                  ? { background: '#0B0B0B', color: '#fff' }
+                  : { background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }
               }
             >
               {cat}
@@ -104,8 +104,8 @@ export default function CatalogPage() {
               className="px-3 py-1 rounded-full text-xs transition-all"
               style={
                 activeBase === b
-                  ? { background: '#C9927C', color: '#fff' }
-                  : { background: '#FEF3EE', color: '#7a4a3a', border: '1px solid #e8d5c8' }
+                  ? { background: '#D4AF37', color: '#fff' }
+                  : { background: '#F0EBE0', color: '#4a4a2a', border: '1px solid #e2d9c0' }
               }
             >
               {b}
@@ -114,7 +114,7 @@ export default function CatalogPage() {
           {activeOccasion && (
             <span
               className="px-3 py-1 rounded-full text-xs font-medium"
-              style={{ background: '#FEF3EE', color: '#C9927C', border: '1px solid #C9927C' }}
+              style={{ background: '#F0EBE0', color: '#D4AF37', border: '1px solid #D4AF37' }}
             >
               ✦ {activeOccasion}
             </span>
@@ -136,15 +136,15 @@ export default function CatalogPage() {
           <div id="catalog">
             {loading && (
               <div className="flex justify-center py-20">
-                <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: '#C9927C', borderTopColor: 'transparent' }} />
+                <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: '#D4AF37', borderTopColor: 'transparent' }} />
               </div>
             )}
 
             {!loading && filtered.length === 0 && (
               <div className="text-center py-20">
                 <p className="text-2xl mb-2">🌿</p>
-                <p className="font-medium" style={{ color: '#5C1A2B' }}>No fragrances found</p>
-                <p className="text-sm mt-1" style={{ color: '#9a6a5a' }}>Try clearing your filters</p>
+                <p className="font-medium" style={{ color: '#0B0B0B' }}>No fragrances found</p>
+                <p className="text-sm mt-1" style={{ color: '#7a6a3a' }}>Try clearing your filters</p>
               </div>
             )}
 
@@ -183,12 +183,15 @@ export default function CatalogPage() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center py-8 border-t" style={{ borderColor: '#e8d5c8', background: '#FDF6EC' }}>
-        <p style={{ fontFamily: "'Playfair Display', serif", color: '#C9927C' }} className="font-semibold mb-1">
-          LuxeAura
+      <footer className="text-center py-10 border-t" style={{ borderColor: '#D4AF3730', background: '#0B0B0B' }}>
+        <p style={{ fontFamily: "'Playfair Display', serif", color: '#D4AF37' }} className="text-xl font-semibold mb-1">
+          LuxeAura Enterprises
         </p>
-        <p className="text-xs" style={{ color: '#9a6a5a' }}>
-          © {new Date().getFullYear()} LuxeAura by Joy Oriabure · luxeauraent.com
+        <p className="text-xs tracking-widest uppercase mb-3" style={{ color: 'rgba(212,175,55,0.5)' }}>
+          Luxury · Quality · Elegance
+        </p>
+        <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+          © {new Date().getFullYear()} LuxeAura Enterprises · Joy Oriabure · luxeauraent.com
         </p>
       </footer>
     </div>

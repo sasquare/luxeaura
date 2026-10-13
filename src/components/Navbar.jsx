@@ -12,23 +12,28 @@ export default function Navbar() {
   ]
 
   return (
-    <nav style={{ background: '#5C1A2B' }} className="sticky top-0 z-50 shadow-lg">
+    <nav style={{ background: '#0B0B0B' }} className="sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
-              style={{ background: 'linear-gradient(135deg, #C9927C, #a07060)' }}
+              className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm"
+              style={{ background: 'linear-gradient(135deg, #D4AF37, #b8962e)', color: '#0B0B0B' }}
             >
-              LA
+              LE
             </div>
-            <span
-              style={{ fontFamily: "'Playfair Display', serif", color: '#C9927C', letterSpacing: '0.08em' }}
-              className="text-xl font-semibold hidden sm:block"
-            >
-              LuxeAura
-            </span>
+            <div className="hidden sm:block">
+              <span
+                style={{ fontFamily: "'Playfair Display', serif", color: '#D4AF37', letterSpacing: '0.08em' }}
+                className="text-xl font-semibold block leading-tight"
+              >
+                LuxeAura Enterprises
+              </span>
+              <span className="text-[10px] tracking-[0.18em] uppercase" style={{ color: 'rgba(212,175,55,0.6)' }}>
+                Luxury · Quality · Elegance
+              </span>
+            </div>
           </Link>
 
           {/* Desktop links */}
@@ -39,8 +44,8 @@ export default function Navbar() {
                 to={l.to}
                 className="px-4 py-2 rounded-md text-sm font-medium transition-colors"
                 style={{
-                  color: pathname === l.to ? '#C9927C' : 'rgba(255,255,255,0.8)',
-                  background: pathname === l.to ? 'rgba(201,146,124,0.12)' : 'transparent',
+                  color: pathname === l.to ? '#D4AF37' : 'rgba(255,255,255,0.8)',
+                  background: pathname === l.to ? 'rgba(212,175,55,0.12)' : 'transparent',
                 }}
               >
                 {l.label}
@@ -66,14 +71,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t" style={{ borderColor: 'rgba(201,146,124,0.2)', background: '#3D0A14' }}>
+        <div className="md:hidden border-t" style={{ borderColor: 'rgba(212,175,55,0.2)', background: '#111111' }}>
           {links.map(l => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => setOpen(false)}
               className="block px-6 py-3 text-sm font-medium transition-colors"
-              style={{ color: pathname === l.to ? '#C9927C' : 'rgba(255,255,255,0.8)' }}
+              style={{ color: pathname === l.to ? '#D4AF37' : 'rgba(255,255,255,0.8)' }}
             >
               {l.label}
             </Link>

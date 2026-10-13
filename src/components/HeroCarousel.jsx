@@ -5,24 +5,24 @@ import { collection, query, where, orderBy, limit, onSnapshot } from 'firebase/f
 const FALLBACK_SLIDES = [
   {
     id: 'f1',
-    title: 'Luxury Fragrance Boutique',
-    subtitle: 'Discover scents that tell your story',
+    title: 'Luxury · Quality · Elegance',
+    subtitle: 'Premium fragrances that define who you are',
     cta: 'Shop Now',
-    bg: 'linear-gradient(135deg, #5C1A2B 0%, #3D0A14 60%, #8B2E3A 100%)',
+    bg: 'linear-gradient(135deg, #0B0B0B 0%, #111111 60%, #1a1a00 100%)',
   },
   {
     id: 'f2',
     title: 'Signature Collections',
     subtitle: 'Curated blends for every occasion',
     cta: 'Explore',
-    bg: 'linear-gradient(135deg, #3D0A14 0%, #5C1A2B 50%, #C9927C33 100%)',
+    bg: 'linear-gradient(135deg, #111111 0%, #0B0B0B 50%, #D4AF3722 100%)',
   },
   {
     id: 'f3',
     title: 'Wholesale & Bulk',
-    subtitle: 'Premium fragrances at scale',
+    subtitle: 'Premium fragrances at scale for retailers',
     cta: 'Wholesale',
-    bg: 'linear-gradient(135deg, #8B2E3A 0%, #5C1A2B 60%, #3D0A14 100%)',
+    bg: 'linear-gradient(135deg, #0F5132 0%, #0B0B0B 60%, #111111 100%)',
   },
 ]
 
@@ -91,7 +91,7 @@ export default function HeroCarousel() {
               className="absolute inset-0"
               style={{
                 background: s.imageUrl
-                  ? 'linear-gradient(to bottom, rgba(61,10,20,0.3) 0%, rgba(61,10,20,0.7) 100%)'
+                  ? 'linear-gradient(to bottom, rgba(11,11,11,0.3) 0%, rgba(11,11,11,0.7) 100%)'
                   : undefined,
               }}
             />
@@ -99,9 +99,9 @@ export default function HeroCarousel() {
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
               <p
                 className="text-sm uppercase tracking-[0.2em] mb-3"
-                style={{ color: '#C9927C', fontFamily: "'Inter', sans-serif" }}
+                style={{ color: '#D4AF37', fontFamily: "'Inter', sans-serif" }}
               >
-                LuxeAura · Premium Fragrances
+                LuxeAura Enterprises · Luxury · Quality · Elegance
               </p>
               <h1
                 className="text-4xl sm:text-5xl font-bold text-white mb-4 max-w-2xl"
@@ -115,7 +115,7 @@ export default function HeroCarousel() {
               <a
                 href={s.ctaLink || '#catalog'}
                 className="px-8 py-3 rounded-full font-semibold text-white transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #C9927C, #a07060)', fontFamily: "'Inter', sans-serif" }}
+                style={{ background: 'linear-gradient(135deg, #D4AF37, #b8962e)', fontFamily: "'Inter', sans-serif" }}
               >
                 {s.cta || 'Explore Collection'}
               </a>
@@ -161,7 +161,7 @@ export default function HeroCarousel() {
               style={{
                 width:  i === current ? '28px' : '8px',
                 height: '8px',
-                background: i === current ? '#C9927C' : 'rgba(255,255,255,0.5)',
+                background: i === current ? '#D4AF37' : 'rgba(255,255,255,0.5)',
               }}
               aria-label={`Slide ${i + 1}`}
             />

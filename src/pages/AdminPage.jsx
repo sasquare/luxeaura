@@ -16,7 +16,7 @@ function Spinner() {
   return (
     <div className="flex justify-center py-16">
       <div className="w-8 h-8 rounded-full border-2 animate-spin"
-        style={{ borderColor: '#C9927C', borderTopColor: 'transparent' }} />
+        style={{ borderColor: '#D4AF37', borderTopColor: 'transparent' }} />
     </div>
   )
 }
@@ -43,24 +43,24 @@ function LoginForm({ onLogin }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4"
-      style={{ background: 'linear-gradient(135deg, #5C1A2B, #3D0A14)' }}>
+      style={{ background: 'linear-gradient(135deg, #0B0B0B, #111111)' }}>
       <div className="bg-white rounded-2xl p-8 w-full max-w-sm shadow-2xl">
-        <h1 className="text-2xl font-bold text-center mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>
+        <h1 className="text-2xl font-bold text-center mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
           LuxeAura Admin
         </h1>
         {err && <p className="text-sm text-red-600 mb-4 text-center">{err}</p>}
         <form onSubmit={submit} className="space-y-4">
           <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
             className="w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2"
-            style={{ borderColor: '#e8d5c8', '--tw-ring-color': '#C9927C' }}
+            style={{ borderColor: '#e2d9c0', '--tw-ring-color': '#D4AF37' }}
             placeholder="Admin email" />
           <input type="password" value={pass} onChange={e => setPass(e.target.value)} required
             className="w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2"
-            style={{ borderColor: '#e8d5c8', '--tw-ring-color': '#C9927C' }}
+            style={{ borderColor: '#e2d9c0', '--tw-ring-color': '#D4AF37' }}
             placeholder="Password" />
           <button type="submit" disabled={busy}
             className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-60"
-            style={{ background: 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' }}>
+            style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}>
             {busy ? 'Signing in…' : 'Sign In ✦'}
           </button>
         </form>
@@ -94,18 +94,18 @@ function ProductForm({ initial, onSave, onCancel }) {
 
   const label = 'block text-xs font-medium mb-1'
   const input = 'w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2'
-  const iStyle = { borderColor: '#e8d5c8', '--tw-ring-color': '#C9927C' }
+  const iStyle = { borderColor: '#e2d9c0', '--tw-ring-color': '#D4AF37' }
 
   return (
     <form onSubmit={submit} className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={label} style={{ color: '#5C1A2B' }}>Product Name *</label>
+          <label className={label} style={{ color: '#0B0B0B' }}>Product Name *</label>
           <input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required
             className={input} style={iStyle} placeholder="e.g. Rose Oud Elixir" />
         </div>
         <div>
-          <label className={label} style={{ color: '#5C1A2B' }}>Price (₦)</label>
+          <label className={label} style={{ color: '#0B0B0B' }}>Price (₦)</label>
           <input type="number" min="0" value={form.price} onChange={e => setForm(f => ({ ...f, price: e.target.value }))}
             className={input} style={iStyle} placeholder="e.g. 15000" />
         </div>
@@ -113,14 +113,14 @@ function ProductForm({ initial, onSave, onCancel }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={label} style={{ color: '#5C1A2B' }}>Category</label>
+          <label className={label} style={{ color: '#0B0B0B' }}>Category</label>
           <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
             className={input} style={iStyle}>
             {CATEGORIES.map(c => <option key={c}>{c}</option>)}
           </select>
         </div>
         <div>
-          <label className={label} style={{ color: '#5C1A2B' }}>Base Type</label>
+          <label className={label} style={{ color: '#0B0B0B' }}>Base Type</label>
           <select value={form.baseType} onChange={e => setForm(f => ({ ...f, baseType: e.target.value }))}
             className={input} style={iStyle}>
             {BASE_TYPES.map(b => <option key={b}>{b}</option>)}
@@ -129,15 +129,15 @@ function ProductForm({ initial, onSave, onCancel }) {
       </div>
 
       <div>
-        <label className={label} style={{ color: '#5C1A2B' }}>Sizes Available</label>
+        <label className={label} style={{ color: '#0B0B0B' }}>Sizes Available</label>
         <div className="flex flex-wrap gap-2 mt-1">
           {SIZES.map(sz => (
             <button type="button" key={sz}
               onClick={() => toggleSize(sz)}
               className="px-3 py-1 rounded-full text-xs font-medium transition-all"
               style={form.sizes.includes(sz)
-                ? { background: '#5C1A2B', color: '#fff' }
-                : { background: '#FEF3EE', color: '#5C1A2B', border: '1px solid #e8d5c8' }
+                ? { background: '#0B0B0B', color: '#fff' }
+                : { background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }
               }>
               {sz}
             </button>
@@ -146,7 +146,7 @@ function ProductForm({ initial, onSave, onCancel }) {
       </div>
 
       <div>
-        <label className={label} style={{ color: '#5C1A2B' }}>Longevity</label>
+        <label className={label} style={{ color: '#0B0B0B' }}>Longevity</label>
         <select value={form.longevity} onChange={e => setForm(f => ({ ...f, longevity: e.target.value }))}
           className={input} style={iStyle}>
           <option value="">— Select —</option>
@@ -155,19 +155,19 @@ function ProductForm({ initial, onSave, onCancel }) {
       </div>
 
       <div>
-        <label className={label} style={{ color: '#5C1A2B' }}>Scent Notes</label>
+        <label className={label} style={{ color: '#0B0B0B' }}>Scent Notes</label>
         <input value={form.scentNotes} onChange={e => setForm(f => ({ ...f, scentNotes: e.target.value }))}
           className={input} style={iStyle} placeholder="e.g. Rose, Oud, Amber, Sandalwood" />
       </div>
 
       <div>
-        <label className={label} style={{ color: '#5C1A2B' }}>Image URL (from ImgBB)</label>
+        <label className={label} style={{ color: '#0B0B0B' }}>Image URL (from ImgBB)</label>
         <input value={form.imageUrl} onChange={e => setForm(f => ({ ...f, imageUrl: e.target.value }))}
           className={input} style={iStyle} placeholder="https://i.ibb.co/..." />
       </div>
 
       <div>
-        <label className={label} style={{ color: '#5C1A2B' }}>Description</label>
+        <label className={label} style={{ color: '#0B0B0B' }}>Description</label>
         <textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3}
           className={input} style={iStyle} placeholder="Brief description of this fragrance…" />
       </div>
@@ -176,25 +176,25 @@ function ProductForm({ initial, onSave, onCancel }) {
         <div
           onClick={() => toggle('featured')}
           className="w-10 h-6 rounded-full transition-colors relative"
-          style={{ background: form.featured ? '#5C1A2B' : '#e8d5c8' }}
+          style={{ background: form.featured ? '#0B0B0B' : '#e2d9c0' }}
         >
           <div
             className="absolute w-4 h-4 top-1 rounded-full bg-white shadow transition-all"
             style={{ left: form.featured ? '22px' : '4px' }}
           />
         </div>
-        <span className="text-sm font-medium" style={{ color: '#5C1A2B' }}>Mark as Joy's Pick (featured)</span>
+        <span className="text-sm font-medium" style={{ color: '#0B0B0B' }}>Mark as Joy's Pick (featured)</span>
       </label>
 
       <div className="flex gap-3">
         <button type="submit" disabled={saving}
           className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
-          style={{ background: 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' }}>
+          style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}>
           {saving ? 'Saving…' : 'Save Product ✦'}
         </button>
         <button type="button" onClick={onCancel}
           className="px-5 py-2.5 rounded-xl text-sm font-medium"
-          style={{ background: '#FEF3EE', color: '#5C1A2B', border: '1px solid #e8d5c8' }}>
+          style={{ background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }}>
           Cancel
         </button>
       </div>
@@ -265,22 +265,22 @@ export default function AdminPage() {
     setBlogSaving(false)
   }
 
-  const statusColor = { pending: '#C9927C', confirmed: '#3b82f6', shipped: '#8b5cf6', delivered: '#22c55e' }
+  const statusColor = { pending: '#D4AF37', confirmed: '#3b82f6', shipped: '#8b5cf6', delivered: '#22c55e' }
 
   const tabBtn = (t, label) => (
     <button key={t} onClick={() => setTab(t)}
       className="px-4 py-2 text-sm font-medium rounded-lg transition-all"
-      style={tab === t ? { background: '#5C1A2B', color: '#fff' } : { color: '#5C1A2B' }}>
+      style={tab === t ? { background: '#0B0B0B', color: '#fff' } : { color: '#0B0B0B' }}>
       {label}
     </button>
   )
 
   return (
-    <div style={{ background: '#FDF6EC', minHeight: '100vh' }}>
+    <div style={{ background: '#F7F3EA', minHeight: '100vh' }}>
       {/* Admin nav */}
-      <div className="sticky top-0 z-50 shadow" style={{ background: '#3D0A14' }}>
+      <div className="sticky top-0 z-50 shadow" style={{ background: '#111111' }}>
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          <span className="font-bold text-base" style={{ fontFamily: "'Playfair Display', serif", color: '#C9927C' }}>
+          <span className="font-bold text-base" style={{ fontFamily: "'Playfair Display', serif", color: '#D4AF37' }}>
             LuxeAura Admin
           </span>
           <div className="flex items-center gap-3">
@@ -288,7 +288,7 @@ export default function AdminPage() {
             <button
               onClick={() => auth && signOut(auth)}
               className="text-xs px-3 py-1.5 rounded-lg"
-              style={{ background: 'rgba(201,146,124,0.15)', color: '#C9927C' }}>
+              style={{ background: 'rgba(212,175,55,0.15)', color: '#D4AF37' }}>
               Sign Out
             </button>
           </div>
@@ -297,7 +297,7 @@ export default function AdminPage() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Tabs */}
-        <div className="flex gap-1 mb-8 bg-white rounded-xl p-1.5 inline-flex" style={{ border: '1px solid #e8d5c8' }}>
+        <div className="flex gap-1 mb-8 bg-white rounded-xl p-1.5 inline-flex" style={{ border: '1px solid #e2d9c0' }}>
           {tabBtn('products', `Products (${products.length})`)}
           {tabBtn('orders',   `Orders (${orders.length})`)}
           {tabBtn('requests', `Requests (${requests.length})`)}
@@ -308,19 +308,19 @@ export default function AdminPage() {
         {tab === 'products' && (
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>Products</h2>
+              <h2 className="text-xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>Products</h2>
               {!addMode && !editProd && (
                 <button onClick={() => setAddMode(true)}
                   className="px-4 py-2 rounded-xl text-white text-sm font-semibold"
-                  style={{ background: 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' }}>
+                  style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}>
                   + Add Product
                 </button>
               )}
             </div>
 
             {(addMode || editProd) && (
-              <div className="bg-white rounded-2xl p-6 mb-8" style={{ border: '1px solid #e8d5c8' }}>
-                <h3 className="font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>
+              <div className="bg-white rounded-2xl p-6 mb-8" style={{ border: '1px solid #e2d9c0' }}>
+                <h3 className="font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
                   {editProd ? 'Edit Product' : 'Add New Product'}
                 </h3>
                 <ProductForm
@@ -333,22 +333,22 @@ export default function AdminPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map(p => (
-                <div key={p.id} className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid #e8d5c8' }}>
-                  <div className="h-32" style={{ background: '#FEF3EE' }}>
+                <div key={p.id} className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid #e2d9c0' }}>
+                  <div className="h-32" style={{ background: '#F0EBE0' }}>
                     {p.imageUrl
                       ? <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover" />
                       : <div className="w-full h-full flex items-center justify-center text-2xl opacity-30">🌸</div>
                     }
                   </div>
                   <div className="p-4">
-                    <p className="font-semibold text-sm mb-1" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>
-                      {p.name} {p.featured && <span style={{ color: '#C9927C' }}>✦</span>}
+                    <p className="font-semibold text-sm mb-1" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
+                      {p.name} {p.featured && <span style={{ color: '#D4AF37' }}>✦</span>}
                     </p>
-                    <p className="text-xs mb-3" style={{ color: '#9a6a5a' }}>{p.category} · {p.price ? `₦${Number(p.price).toLocaleString()}` : 'No price'}</p>
+                    <p className="text-xs mb-3" style={{ color: '#7a6a3a' }}>{p.category} · {p.price ? `₦${Number(p.price).toLocaleString()}` : 'No price'}</p>
                     <div className="flex gap-2">
                       <button onClick={() => { setEditProd(p); setAddMode(false) }}
                         className="flex-1 py-1.5 rounded-lg text-xs font-medium"
-                        style={{ background: '#FEF3EE', color: '#5C1A2B', border: '1px solid #e8d5c8' }}>
+                        style={{ background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }}>
                         Edit
                       </button>
                       <button onClick={() => deleteProduct(p.id)}
@@ -367,14 +367,14 @@ export default function AdminPage() {
         {/* Orders tab */}
         {tab === 'orders' && (
           <div>
-            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>Orders</h2>
+            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>Orders</h2>
             <div className="space-y-4">
               {orders.map(o => (
-                <div key={o.id} className="bg-white rounded-2xl p-5" style={{ border: '1px solid #e8d5c8' }}>
+                <div key={o.id} className="bg-white rounded-2xl p-5" style={{ border: '1px solid #e2d9c0' }}>
                   <div className="flex flex-wrap gap-3 justify-between items-start mb-3">
                     <div>
-                      <p className="font-semibold text-sm" style={{ color: '#5C1A2B' }}>{o.name}</p>
-                      <p className="text-xs" style={{ color: '#9a6a5a' }}>{o.phone} · {o.productName} · {o.size} × {o.qty}</p>
+                      <p className="font-semibold text-sm" style={{ color: '#0B0B0B' }}>{o.name}</p>
+                      <p className="text-xs" style={{ color: '#7a6a3a' }}>{o.phone} · {o.productName} · {o.size} × {o.qty}</p>
                     </div>
                     <span
                       className="px-2.5 py-0.5 rounded-full text-xs font-medium capitalize"
@@ -382,14 +382,14 @@ export default function AdminPage() {
                       {o.status}
                     </span>
                   </div>
-                  {o.total && <p className="text-xs mb-3" style={{ color: '#5C1A2B' }}>Total: ₦{Number(o.total).toLocaleString()}</p>}
+                  {o.total && <p className="text-xs mb-3" style={{ color: '#0B0B0B' }}>Total: ₦{Number(o.total).toLocaleString()}</p>}
                   <div className="flex flex-wrap gap-2">
                     {['confirmed', 'shipped', 'delivered'].map(s => (
                       <button key={s} onClick={() => markOrderStatus(o.id, s)}
                         className="px-3 py-1 rounded-lg text-xs font-medium capitalize transition-all"
                         style={o.status === s
-                          ? { background: '#5C1A2B', color: '#fff' }
-                          : { background: '#FEF3EE', color: '#5C1A2B', border: '1px solid #e8d5c8' }
+                          ? { background: '#0B0B0B', color: '#fff' }
+                          : { background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }
                         }>
                         {s}
                       </button>
@@ -397,7 +397,7 @@ export default function AdminPage() {
                   </div>
                 </div>
               ))}
-              {orders.length === 0 && <p className="text-sm text-center py-12" style={{ color: '#9a6a5a' }}>No orders yet.</p>}
+              {orders.length === 0 && <p className="text-sm text-center py-12" style={{ color: '#7a6a3a' }}>No orders yet.</p>}
             </div>
           </div>
         )}
@@ -405,21 +405,21 @@ export default function AdminPage() {
         {/* Requests tab */}
         {tab === 'requests' && (
           <div>
-            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>Perfume Requests</h2>
+            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>Perfume Requests</h2>
             <div className="space-y-4">
               {requests.map(r => (
-                <div key={r.id} className="bg-white rounded-2xl p-5" style={{ border: '1px solid #e8d5c8' }}>
+                <div key={r.id} className="bg-white rounded-2xl p-5" style={{ border: '1px solid #e2d9c0' }}>
                   <div className="flex justify-between flex-wrap gap-2 mb-2">
-                    <p className="font-semibold text-sm" style={{ color: '#5C1A2B' }}>{r.name}</p>
-                    <p className="text-xs" style={{ color: '#C9927C' }}>{r.phone}</p>
+                    <p className="font-semibold text-sm" style={{ color: '#0B0B0B' }}>{r.name}</p>
+                    <p className="text-xs" style={{ color: '#D4AF37' }}>{r.phone}</p>
                   </div>
-                  <p className="text-sm mb-2" style={{ color: '#7a4a3a' }}>{r.description}</p>
+                  <p className="text-sm mb-2" style={{ color: '#4a4a2a' }}>{r.description}</p>
                   {(r.minPrice || r.maxPrice) && (
-                    <p className="text-xs" style={{ color: '#9a6a5a' }}>Budget: ₦{r.minPrice || '?'} – ₦{r.maxPrice || '?'}</p>
+                    <p className="text-xs" style={{ color: '#7a6a3a' }}>Budget: ₦{r.minPrice || '?'} – ₦{r.maxPrice || '?'}</p>
                   )}
                 </div>
               ))}
-              {requests.length === 0 && <p className="text-sm text-center py-12" style={{ color: '#9a6a5a' }}>No requests yet.</p>}
+              {requests.length === 0 && <p className="text-sm text-center py-12" style={{ color: '#7a6a3a' }}>No requests yet.</p>}
             </div>
           </div>
         )}
@@ -427,26 +427,26 @@ export default function AdminPage() {
         {/* Blog tab */}
         {tab === 'blog' && (
           <div>
-            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>Blog Posts</h2>
+            <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>Blog Posts</h2>
 
             {/* New post form */}
-            <div className="bg-white rounded-2xl p-6 mb-8" style={{ border: '1px solid #e8d5c8' }}>
-              <h3 className="font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>New Post</h3>
+            <div className="bg-white rounded-2xl p-6 mb-8" style={{ border: '1px solid #e2d9c0' }}>
+              <h3 className="font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>New Post</h3>
               <form onSubmit={saveBlogPost} className="space-y-3">
                 <input value={blogForm.title} onChange={e => setBlogForm(f => ({ ...f, title: e.target.value }))} required
                   className="w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2"
-                  style={{ borderColor: '#e8d5c8', '--tw-ring-color': '#C9927C' }}
+                  style={{ borderColor: '#e2d9c0', '--tw-ring-color': '#D4AF37' }}
                   placeholder="Post title *" />
                 <textarea value={blogForm.excerpt} onChange={e => setBlogForm(f => ({ ...f, excerpt: e.target.value }))} required rows={6}
                   className="w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2"
-                  style={{ borderColor: '#e8d5c8', '--tw-ring-color': '#C9927C' }}
+                  style={{ borderColor: '#e2d9c0', '--tw-ring-color': '#D4AF37' }}
                   placeholder="Write your post (max 200 words)…" />
-                <p className="text-xs" style={{ color: '#9a6a5a' }}>
+                <p className="text-xs" style={{ color: '#7a6a3a' }}>
                   Words: {blogForm.excerpt.trim().split(/\s+/).filter(Boolean).length} / 200
                 </p>
                 <button type="submit" disabled={blogSaving}
                   className="px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ background: 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' }}>
+                  style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}>
                   {blogSaving ? 'Publishing…' : 'Publish Post ✦'}
                 </button>
               </form>
@@ -455,13 +455,13 @@ export default function AdminPage() {
             {/* Existing posts */}
             <div className="space-y-4">
               {blogPosts.map(p => (
-                <div key={p.id} className="bg-white rounded-2xl p-5" style={{ border: '1px solid #e8d5c8' }}>
+                <div key={p.id} className="bg-white rounded-2xl p-5" style={{ border: '1px solid #e2d9c0' }}>
                   <div className="flex justify-between items-start gap-4">
                     <div>
-                      <p className="font-semibold text-sm mb-1" style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}>
+                      <p className="font-semibold text-sm mb-1" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
                         {p.title}
                       </p>
-                      <p className="text-xs line-clamp-2" style={{ color: '#9a6a5a' }}>{p.excerpt}</p>
+                      <p className="text-xs line-clamp-2" style={{ color: '#7a6a3a' }}>{p.excerpt}</p>
                     </div>
                     <button
                       onClick={() => confirm('Delete this post?') && deleteDoc(doc(db, 'blog_posts', p.id))}
@@ -472,7 +472,7 @@ export default function AdminPage() {
                   </div>
                 </div>
               ))}
-              {blogPosts.length === 0 && <p className="text-sm text-center py-8" style={{ color: '#9a6a5a' }}>No posts yet.</p>}
+              {blogPosts.length === 0 && <p className="text-sm text-center py-8" style={{ color: '#7a6a3a' }}>No posts yet.</p>}
             </div>
           </div>
         )}

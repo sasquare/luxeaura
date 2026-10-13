@@ -64,18 +64,18 @@ export default function OrderForm({ product }) {
   )
 
   const field = 'w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2'
-  const fieldStyle = { borderColor: '#e8d5c8', color: '#5C1A2B', '--tw-ring-color': '#C9927C' }
+  const fieldStyle = { borderColor: '#e2d9c0', color: '#0B0B0B', '--tw-ring-color': '#D4AF37' }
 
   return (
     <form onSubmit={submit} className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Full Name *</label>
+          <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Full Name *</label>
           <input name="name" value={form.name} onChange={update} required
             className={field} style={fieldStyle} placeholder="Your full name" />
         </div>
         <div>
-          <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Phone *</label>
+          <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Phone *</label>
           <input name="phone" value={form.phone} onChange={update} required
             className={field} style={fieldStyle} placeholder="08xx xxx xxxx" />
         </div>
@@ -83,26 +83,26 @@ export default function OrderForm({ product }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
-          <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Size</label>
+          <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Size</label>
           <select name="size" value={form.size} onChange={update} className={field} style={fieldStyle}>
             {SIZES.map(s => <option key={s}>{s}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Base</label>
+          <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Base</label>
           <select name="base" value={form.base} onChange={update} className={field} style={fieldStyle}>
             {BASE_TYPES.map(b => <option key={b}>{b}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Qty</label>
+          <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Qty</label>
           <input name="qty" type="number" min="1" max="50" value={form.qty} onChange={update}
             className={field} style={fieldStyle} />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Delivery Zone</label>
+        <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Delivery Zone</label>
         <select name="zone" value={form.zone} onChange={update} className={field} style={fieldStyle}>
           {DELIVERY_ZONES.map(z => (
             <option key={z.label} value={z.label}>
@@ -113,13 +113,13 @@ export default function OrderForm({ product }) {
       </div>
 
       <div>
-        <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Delivery Address *</label>
+        <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Delivery Address *</label>
         <textarea name="address" value={form.address} onChange={update} required rows={2}
           className={field} style={fieldStyle} placeholder="Street, area, city…" />
       </div>
 
       <div>
-        <label className="block text-xs font-medium mb-1" style={{ color: '#5C1A2B' }}>Notes (optional)</label>
+        <label className="block text-xs font-medium mb-1" style={{ color: '#0B0B0B' }}>Notes (optional)</label>
         <textarea name="notes" value={form.notes} onChange={update} rows={2}
           className={field} style={fieldStyle} placeholder="Gift wrap, custom message, etc." />
       </div>
@@ -127,12 +127,12 @@ export default function OrderForm({ product }) {
       {total !== null && (
         <div
           className="flex justify-between items-center rounded-xl px-4 py-3"
-          style={{ background: '#FEF3EE', border: '1px solid #e8d5c8' }}
+          style={{ background: '#F0EBE0', border: '1px solid #e2d9c0' }}
         >
-          <span className="text-sm font-medium" style={{ color: '#5C1A2B' }}>Total (incl. delivery)</span>
+          <span className="text-sm font-medium" style={{ color: '#0B0B0B' }}>Total (incl. delivery)</span>
           <span
             className="text-lg font-bold"
-            style={{ fontFamily: "'Playfair Display', serif", color: '#5C1A2B' }}
+            style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}
           >
             ₦{total.toLocaleString()}
           </span>
@@ -143,7 +143,7 @@ export default function OrderForm({ product }) {
         type="submit"
         disabled={saving}
         className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-60"
-        style={{ background: 'linear-gradient(135deg, #5C1A2B, #8B2E3A)' }}
+        style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}
       >
         {saving ? 'Sending…' : 'Place Order via WhatsApp ✦'}
       </button>
