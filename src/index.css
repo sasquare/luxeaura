@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-burgundy:       #5C1A2B;
+  --color-brand-burgundy-dark:  #3D0A14;
+  --color-brand-burgundy-light: #8B2E3A;
+  --color-brand-rose-gold:      #C9927C;
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; }
