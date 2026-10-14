@@ -6,9 +6,8 @@ export default function Navbar() {
   const { pathname } = useLocation()
 
   const links = [
-    { to: '/',           label: 'Catalog' },
-    { to: '/wholesale',  label: 'Wholesale' },
-    { to: '/admin',      label: 'Admin' },
+    { to: '/',          label: 'Catalog' },
+    { to: '/wholesale', label: 'Wholesale' },
   ]
 
   return (
