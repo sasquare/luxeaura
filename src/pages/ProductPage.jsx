@@ -5,6 +5,8 @@ import { doc, getDoc } from 'firebase/firestore'
 import Navbar from '../components/Navbar'
 import OrderForm from '../components/OrderForm'
 import ReviewSection from '../components/ReviewSection'
+import Footer from '../components/Footer'
+import FloatingWhatsApp from '../components/FloatingWhatsApp'
 
 export default function ProductPage() {
   const { id } = useParams()
@@ -155,6 +157,8 @@ export default function ProductPage() {
           <ReviewSection productId={id} />
         </div>
       </div>
+      <Footer />
+      <FloatingWhatsApp />
     </div>
   )
 }

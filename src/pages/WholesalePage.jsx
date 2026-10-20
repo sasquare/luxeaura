@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { WHOLESALE_CATEGORIES, WHOLESALE_DOZEN_SIZES, WHOLESALE_BULK_SIZES, JOY_WHATSAPP, DELIVERY_ZONES } from '../constants'
 import SuccessMessage from '../components/SuccessMessage'
+import Footer from '../components/Footer'
+import FloatingWhatsApp from '../components/FloatingWhatsApp'
 
 const DEMO_W = [
   { id: 'w1', name: 'Floral Collection Dozen', category: 'Dozens', size: '30ml × 12 pcs', price: 85000, imageUrl: null },
@@ -210,6 +212,8 @@ export default function WholesalePage() {
       </div>
 
       {modal && <OrderModal product={modal} onClose={() => setModal(null)} />}
+      <Footer />
+      <FloatingWhatsApp />
     </div>
   )
 }

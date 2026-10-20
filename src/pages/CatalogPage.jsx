@@ -12,6 +12,8 @@ import CustomerLoveWidget from '../components/CustomerLoveWidget'
 import ShopByOccasionWidget from '../components/ShopByOccasionWidget'
 import FindYourScentWidget from '../components/FindYourScentWidget'
 import PerfumeRequestForm from '../components/PerfumeRequestForm'
+import Footer from '../components/Footer'
+import FloatingWhatsApp from '../components/FloatingWhatsApp'
 
 const DEMO_PRODUCTS = [
   {
@@ -182,18 +184,8 @@ export default function CatalogPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="text-center py-10 border-t" style={{ borderColor: '#D4AF3730', background: '#0B0B0B' }}>
-        <p style={{ fontFamily: "'Playfair Display', serif", color: '#D4AF37' }} className="text-xl font-semibold mb-1">
-          LuxeAura Enterprises
-        </p>
-        <p className="text-xs tracking-widest uppercase mb-3" style={{ color: 'rgba(212,175,55,0.5)' }}>
-          Luxury · Quality · Elegance
-        </p>
-        <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
-          © {new Date().getFullYear()} LuxeAura Enterprises · Joy Oriabure · luxeauraent.com
-        </p>
-      </footer>
+      <Footer />
+      <FloatingWhatsApp />
     </div>
   )
 }
