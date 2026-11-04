@@ -76,14 +76,38 @@ const EMPTY = {
 }
 
 function ProductForm({ initial, onSave, onCancel }) {
-  const [form, setForm] = useState(initial || EMPTY)
-  const [saving, setSaving] = useState(false)
+  const [form, setForm]       = useState(initial || EMPTY)
+  const [saving, setSaving]   = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const [uploadErr, setUploadErr] = useState('')
 
   const toggle = field => setForm(f => ({ ...f, [field]: !f[field] }))
   const toggleSize = (sz) => setForm(f => ({
     ...f,
     sizes: f.sizes.includes(sz) ? f.sizes.filter(s => s !== sz) : [...f.sizes, sz],
   }))
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    setUploading(true)
+    setUploadErr('')
+    try {
+      const data = new FormData()
+      data.append('image', file)
+      data.append('token', '#*Joy1987')
+      const res = await fetch('/upload.php', { method: 'POST', body: data })
+      const json = await res.json()
+      if (json.url) {
+        setForm(f => ({ ...f, imageUrl: json.url }))
+      } else {
+        setUploadErr(json.error || 'Upload failed')
+      }
+    } catch {
+      setUploadErr('Upload failed — check server connection')
+    }
+    setUploading(false)
+  }
 
   const submit = async (e) => {
     e.preventDefault()
@@ -161,9 +185,34 @@ function ProductForm({ initial, onSave, onCancel }) {
       </div>
 
       <div>
-        <label className={label} style={{ color: '#0B0B0B' }}>Image URL (from ImgBB)</label>
-        <input value={form.imageUrl} onChange={e => setForm(f => ({ ...f, imageUrl: e.target.value }))}
-          className={input} style={iStyle} placeholder="https://i.ibb.co/..." />
+        <label className={label} style={{ color: '#0B0B0B' }}>Product Image</label>
+        <div className="space-y-2">
+          {/* Upload button */}
+          <label className="flex items-center gap-3 cursor-pointer px-4 py-2.5 rounded-xl border text-sm transition-all hover:opacity-80"
+            style={{ borderColor: '#D4AF37', background: '#0B0B0B', color: '#D4AF37' }}>
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+            {uploading ? 'Uploading…' : 'Upload Image from device'}
+            <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
+          </label>
+
+          {/* Preview + URL */}
+          {form.imageUrl && (
+            <div className="flex items-center gap-3 p-2 rounded-xl" style={{ background: '#F0EBE0', border: '1px solid #e2d9c0' }}>
+              <img src={form.imageUrl} alt="preview" className="w-14 h-14 object-cover rounded-lg flex-shrink-0" />
+              <p className="text-xs break-all" style={{ color: '#4a4a2a' }}>{form.imageUrl}</p>
+              <button type="button" onClick={() => setForm(f => ({ ...f, imageUrl: '' }))}
+                className="ml-auto text-xs px-2 py-1 rounded" style={{ color: '#cc3333' }}>✕</button>
+            </div>
+          )}
+
+          {uploadErr && <p className="text-xs" style={{ color: '#cc3333' }}>{uploadErr}</p>}
+
+          {/* Manual URL fallback */}
+          <input value={form.imageUrl} onChange={e => setForm(f => ({ ...f, imageUrl: e.target.value }))}
+            className={input} style={iStyle} placeholder="Or paste image URL manually" />
+        </div>
       </div>
 
       <div>

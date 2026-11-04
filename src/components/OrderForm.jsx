@@ -3,42 +3,41 @@ import { db, isFirebaseReady } from '../firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { SIZES, BASE_TYPES, DELIVERY_ZONES, JOY_WHATSAPP } from '../constants'
 import SuccessMessage from './SuccessMessage'
+import { openPaystack } from './PaystackPayment'
+
+const PAYSTACK_ENABLED = !!import.meta.env.VITE_PAYSTACK_PUBLIC_KEY
 
 export default function OrderForm({ product }) {
   const [form, setForm] = useState({
     name: '', phone: '', address: '',
-    size: SIZES[0], base: BASE_TYPES[0],
+    size: product?.sizes?.[0] || SIZES[0],
+    base: BASE_TYPES[0],
     zone: DELIVERY_ZONES[0].label,
     qty: 1, notes: '',
   })
-  const [saving, setSaving] = useState(false)
-  const [done, setDone]     = useState(false)
+  const [saving, setSaving]   = useState(false)
+  const [paying, setPaying]   = useState(false)
+  const [done, setDone]       = useState(false)
+  const [payMethod, setPayMethod] = useState(PAYSTACK_ENABLED ? 'paystack' : 'whatsapp')
 
-  const zone = DELIVERY_ZONES.find(z => z.label === form.zone) || DELIVERY_ZONES[0]
+  const zone  = DELIVERY_ZONES.find(z => z.label === form.zone) || DELIVERY_ZONES[0]
   const total = product?.price ? (Number(product.price) * form.qty) + zone.fee : null
 
   const update = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const submit = async (e) => {
-    e.preventDefault()
-    setSaving(true)
-    const order = {
-      ...form,
-      qty: Number(form.qty),
-      productId: product?.id || null,
-      productName: product?.name || '',
-      productPrice: product?.price || null,
-      deliveryFee: zone.fee,
-      total,
-      status: 'pending',
-      createdAt: serverTimestamp(),
-    }
+  const buildOrder = (extra = {}) => ({
+    ...form,
+    qty: Number(form.qty),
+    productId: product?.id || null,
+    productName: product?.name || '',
+    productPrice: product?.price || null,
+    deliveryFee: zone.fee,
+    total,
+    createdAt: serverTimestamp(),
+    ...extra,
+  })
 
-    if (isFirebaseReady && db) {
-      await addDoc(collection(db, 'orders'), order)
-    }
-
-    // Redirect to WhatsApp as well
+  const sendWhatsApp = (order) => {
     const txt = encodeURIComponent(
       `*New Order — LuxeAura*\n` +
       `Product: ${product?.name}\n` +
@@ -49,12 +48,58 @@ export default function OrderForm({ product }) {
       `Zone: ${form.zone} (+₦${zone.fee.toLocaleString()})\n` +
       `Address: ${form.address}\n` +
       (form.notes ? `Notes: ${form.notes}\n` : '') +
-      (total ? `Total: ₦${total.toLocaleString()}` : '')
+      (total ? `Total: ₦${total.toLocaleString()}\n` : '') +
+      (order.paymentRef ? `Payment Ref: ${order.paymentRef} ✅ PAID` : `Payment: Pending`)
     )
     window.open(`https://wa.me/${JOY_WHATSAPP}?text=${txt}`, '_blank')
+  }
+
+  const handleWhatsApp = async (e) => {
+    e.preventDefault()
+    setSaving(true)
+    const order = buildOrder({ status: 'pending', paymentMethod: 'whatsapp' })
+    if (isFirebaseReady && db) await addDoc(collection(db, 'orders'), order)
+    sendWhatsApp(order)
     setSaving(false)
     setDone(true)
   }
+
+  const handlePaystack = async (e) => {
+    e.preventDefault()
+    if (!form.name || !form.phone || !form.address) {
+      alert('Please fill in your name, phone and address first.')
+      return
+    }
+    setPaying(true)
+    await openPaystack({
+      email: `${form.phone.replace(/\D/g, '')}@luxeaura.order`,
+      amount: total,
+      name: form.name,
+      phone: form.phone,
+      metadata: {
+        'Product': product?.name || '',
+        'Size': form.size,
+        'Quantity': form.qty,
+        'Zone': form.zone,
+        'Address': form.address,
+      },
+      onSuccess: async (response) => {
+        const order = buildOrder({
+          status: 'paid',
+          paymentMethod: 'paystack',
+          paymentRef: response.reference,
+          paidAt: serverTimestamp(),
+        })
+        if (isFirebaseReady && db) await addDoc(collection(db, 'orders'), order)
+        sendWhatsApp(order)
+        setPaying(false)
+        setDone(true)
+      },
+      onClose: () => setPaying(false),
+    })
+  }
+
+  const submit = payMethod === 'paystack' ? handlePaystack : handleWhatsApp
 
   if (done) return (
     <SuccessMessage
@@ -139,13 +184,48 @@ export default function OrderForm({ product }) {
         </div>
       )}
 
+      {/* Payment method selector */}
+      <div className="rounded-xl p-4 space-y-3" style={{ background: '#F0EBE0', border: '1px solid #e2d9c0' }}>
+        <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#0B0B0B' }}>How would you like to pay?</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {PAYSTACK_ENABLED && (
+            <button type="button" onClick={() => setPayMethod('paystack')}
+              className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all border-2"
+              style={payMethod === 'paystack'
+                ? { background: '#0B0B0B', color: '#D4AF37', borderColor: '#D4AF37' }
+                : { background: 'white', color: '#0B0B0B', borderColor: '#e2d9c0' }}>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              </svg>
+              Pay Online (Card / Transfer)
+            </button>
+          )}
+          <button type="button" onClick={() => setPayMethod('whatsapp')}
+            className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all border-2"
+            style={payMethod === 'whatsapp'
+              ? { background: '#0B0B0B', color: '#D4AF37', borderColor: '#D4AF37' }
+              : { background: 'white', color: '#0B0B0B', borderColor: '#e2d9c0' }}>
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            </svg>
+            Order via WhatsApp
+          </button>
+        </div>
+        {payMethod === 'whatsapp' && (
+          <p className="text-xs" style={{ color: '#7a6a3a' }}>Joy will send payment details after you place the order.</p>
+        )}
+        {payMethod === 'paystack' && (
+          <p className="text-xs" style={{ color: '#7a6a3a' }}>Pay securely with card, bank transfer or USSD. Powered by Paystack.</p>
+        )}
+      </div>
+
       <button
         type="submit"
-        disabled={saving}
+        disabled={saving || paying}
         className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-60"
-        style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}
+        style={{ background: payMethod === 'paystack' ? 'linear-gradient(135deg, #0F5132, #1a7a4a)' : 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}
       >
-        {saving ? 'Sending…' : 'Place Order via WhatsApp ✦'}
+        {paying ? 'Opening payment…' : saving ? 'Sending…' : payMethod === 'paystack' ? `Pay ₦${total?.toLocaleString()} Now ✦` : 'Place Order via WhatsApp ✦'}
       </button>
     </form>
   )
