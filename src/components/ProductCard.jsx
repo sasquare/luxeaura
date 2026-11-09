@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
       style={{ boxShadow: '0 2px 16px rgba(11,11,11,0.07)', borderRadius: '12px', overflow: 'hidden' }}
     >
       {/* Image — taller, no border glow */}
-      <div className="relative overflow-hidden" style={{ height: '240px', background: '#F7F3EA' }}>
+      <div className="relative overflow-hidden" style={{ height: '185px', background: '#F7F3EA' }}>
         {imageUrl
           ? <img
               src={imageUrl}
