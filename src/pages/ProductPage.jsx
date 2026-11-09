@@ -26,7 +26,7 @@ export default function ProductPage() {
       <div style={{ background: '#F7F3EA', minHeight: '100vh' }}>
         <Navbar />
         <div className="flex justify-center py-32">
-          <div className="w-10 h-10 rounded-full border-2 animate-spin" style={{ borderColor: '#D4AF37', borderTopColor: 'transparent' }} />
+          <div className="w-8 h-8 rounded-full border-2 animate-spin" style={{ borderColor: '#D4AF37', borderTopColor: 'transparent' }} />
         </div>
       </div>
     )
@@ -41,13 +41,9 @@ export default function ProductPage() {
           <h2 className="text-xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
             Product Not Found
           </h2>
-          <p className="text-sm mb-6" style={{ color: '#7a6a3a' }}>This fragrance may have moved or been removed.</p>
-          <Link
-            to="/"
-            className="px-6 py-2.5 rounded-xl text-white text-sm font-semibold"
-            style={{ background: 'linear-gradient(135deg, #0B0B0B, #1A1A1A)' }}
-          >
-            Back to Catalog
+          <p className="text-sm mb-6" style={{ color: '#777777' }}>This fragrance may have moved or been removed.</p>
+          <Link to="/" className="inline-flex items-center px-6 py-2.5 text-sm font-semibold text-white" style={{ background: '#0B0B0B', borderRadius: '4px' }}>
+            Back to Catalogue
           </Link>
         </div>
       </div>
@@ -55,34 +51,46 @@ export default function ProductPage() {
   }
 
   return (
-    <div style={{ background: '#F7F3EA', minHeight: '100vh' }}>
+    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Back */}
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors hover:opacity-75"
-          style={{ color: '#D4AF37' }}
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Catalog
-        </Link>
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-10" style={{ paddingTop: '32px', paddingBottom: '72px' }}>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Left: image */}
+        {/* Breadcrumb */}
+        <div className="mb-8 flex items-center gap-2" style={{ fontSize: '12px', color: '#777777' }}>
+          <Link to="/" className="hover:text-black transition-colors" style={{ color: '#777777' }}>Home</Link>
+          <span>/</span>
+          <Link to="/#catalog" className="hover:text-black transition-colors" style={{ color: '#777777' }}>Shop</Link>
+          <span>/</span>
+          <span style={{ color: '#0B0B0B' }}>{product.name}</span>
+        </div>
+
+        {/* Two-column: 55% image / 45% info */}
+        <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-6 lg:gap-12">
+
+          {/* Image column */}
           <div>
             <div
-              className="rounded-2xl overflow-hidden mb-4"
-              style={{ height: '400px', background: 'linear-gradient(135deg, #F0EBE0, #F7F3EA)' }}
+              className="overflow-hidden"
+              style={{
+                background: '#F7F3EA',
+                borderRadius: '6px',
+                border: '1px solid #EAE7E0',
+                height: 'clamp(300px, 45vw, 520px)',
+              }}
             >
               {product.imageUrl
-                ? <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
+                ? (
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-full h-full"
+                    style={{ objectFit: 'contain', objectPosition: 'center', padding: '12px' }}
+                  />
+                )
                 : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <svg className="w-20 h-20 opacity-20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1">
+                    <svg className="w-20 h-20 opacity-15" viewBox="0 0 24 24" fill="none" stroke="#8a7a40" strokeWidth="1">
                       <path d="M12 2C8 2 6 5 6 8c0 4 2 6 4 8l2 2 2-2c2-2 4-4 4-8 0-3-2-6-6-6z" />
                     </svg>
                   </div>
@@ -90,73 +98,84 @@ export default function ProductPage() {
               }
             </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
+            {/* Tags below image */}
+            <div className="flex flex-wrap gap-2 mt-4">
               {product.category && (
-                <span className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }}>
+                <span className="px-3 py-1 font-medium" style={{ fontSize: '11px', background: '#F7F3EA', color: '#0B0B0B', border: '1px solid #EAE7E0', borderRadius: '3px' }}>
                   {product.category}
                 </span>
               )}
               {product.baseType && (
-                <span className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }}>
+                <span className="px-3 py-1 font-medium" style={{ fontSize: '11px', background: '#F7F3EA', color: '#0B0B0B', border: '1px solid #EAE7E0', borderRadius: '3px' }}>
                   {product.baseType}
                 </span>
               )}
               {product.longevity && (
-                <span className="px-3 py-1 rounded-full text-xs font-medium" style={{ background: '#F0EBE0', color: '#0B0B0B', border: '1px solid #e2d9c0' }}>
-                  🕐 {product.longevity}
+                <span className="px-3 py-1 font-medium" style={{ fontSize: '11px', background: '#F7F3EA', color: '#0B0B0B', border: '1px solid #EAE7E0', borderRadius: '3px' }}>
+                  ⏱ {product.longevity}
                 </span>
               )}
             </div>
           </div>
 
-          {/* Right: details + order form */}
+          {/* Info column */}
           <div>
+            {/* Category eyebrow */}
+            {product.category && (
+              <p className="uppercase tracking-widest font-medium mb-2" style={{ fontSize: '10px', color: '#D4AF37', letterSpacing: '0.22em' }}>
+                {product.category}
+              </p>
+            )}
+
             <h1
-              className="text-3xl font-bold mb-2"
-              style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}
+              className="font-bold leading-tight mb-3"
+              style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(26px, 3vw, 34px)', color: '#0B0B0B' }}
             >
               {product.name}
             </h1>
 
             {product.price && (
-              <p className="text-2xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: '#D4AF37' }}>
+              <p className="font-bold mb-5" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(20px, 2.5vw, 25px)', color: '#0B0B0B' }}>
                 ₦{Number(product.price).toLocaleString()}
               </p>
             )}
 
+            {/* Divider */}
+            <div style={{ height: '1px', background: '#EAE7E0', marginBottom: '20px' }} />
+
             {product.scentNotes && (
               <div className="mb-4">
-                <p className="text-xs uppercase tracking-wider mb-1" style={{ color: '#D4AF37' }}>Scent Notes</p>
-                <p className="text-sm" style={{ color: '#4a4a2a' }}>{product.scentNotes}</p>
+                <p className="uppercase tracking-wider font-medium mb-1" style={{ fontSize: '10px', color: '#D4AF37', letterSpacing: '0.18em' }}>Scent Notes</p>
+                <p style={{ fontSize: '14px', color: '#444444', lineHeight: 1.65 }}>{product.scentNotes}</p>
               </div>
             )}
 
             {product.description && (
               <div className="mb-6">
-                <p className="text-xs uppercase tracking-wider mb-1" style={{ color: '#D4AF37' }}>About</p>
-                <p className="text-sm leading-relaxed" style={{ color: '#4a4a2a' }}>{product.description}</p>
+                <p className="uppercase tracking-wider font-medium mb-1" style={{ fontSize: '10px', color: '#D4AF37', letterSpacing: '0.18em' }}>About</p>
+                <p style={{ fontSize: '15px', color: '#444444', lineHeight: 1.7 }}>{product.description}</p>
               </div>
             )}
 
             {/* Order form */}
-            <div className="rounded-2xl p-6 bg-white shadow-sm" style={{ border: '1px solid #e2d9c0' }}>
-              <h2 className="font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
+            <div className="rounded bg-white" style={{ border: '1px solid #EAE7E0', padding: '24px' }}>
+              <p className="font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', color: '#0B0B0B' }}>
                 Place Your Order
-              </h2>
+              </p>
               <OrderForm product={product} />
             </div>
           </div>
         </div>
 
         {/* Reviews */}
-        <div className="mt-16 rounded-2xl p-6 bg-white" style={{ border: '1px solid #e2d9c0' }}>
-          <h2 className="text-xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: '#0B0B0B' }}>
-            Reviews
+        <div className="mt-16 rounded bg-white" style={{ border: '1px solid #EAE7E0', padding: '32px' }}>
+          <h2 className="font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', color: '#0B0B0B' }}>
+            Customer Reviews
           </h2>
           <ReviewSection productId={id} />
         </div>
       </div>
+
       <Footer />
       <FloatingWhatsApp />
     </div>
