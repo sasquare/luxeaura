@@ -17,11 +17,11 @@ export const SIZES = [
 export const BASE_TYPES = ['Oil Based', 'Alcohol Based']
 
 export const DELIVERY_ZONES = [
-  { label: 'Lagos',                     fee: 1500 },
-  { label: 'Abuja',                     fee: 3500 },
-  { label: 'Port Harcourt',             fee: 3500 },
-  { label: 'Ibadan',                    fee: 2500 },
-  { label: 'Other States (Nationwide)', fee: 4500 },
+  { label: 'Lagos',                     fee: 3000 },
+  { label: 'Abuja',                     fee: 3000 },
+  { label: 'Port Harcourt',             fee: 3000 },
+  { label: 'Ibadan',                    fee: 3000 },
+  { label: 'Other States (Nationwide)', fee: 3000 },
   { label: 'Pick Up — No Delivery Fee', fee: 0    },
 ]
 
@@ -52,10 +52,12 @@ export const BLOG_MAX_WORDS = 200
 
 // Product longevity options (optional field)
 export const LONGEVITY_OPTIONS = [
-  { value: '2–3 hrs', label: '2–3 hrs · Light' },
-  { value: '4–6 hrs', label: '4–6 hrs · Moderate' },
-  { value: '6–8 hrs', label: '6–8 hrs · Long Lasting' },
-  { value: '8+ hrs',  label: '8+ hrs · Very Long Lasting' },
+  { value: '2–3 hrs',  label: '2–3 hrs · Light' },
+  { value: '4–6 hrs',  label: '4–6 hrs · Moderate' },
+  { value: '6–8 hrs',  label: '6–8 hrs · Long Lasting' },
+  { value: '8+ hrs',   label: '8+ hrs · Very Long Lasting' },
+  { value: '12 hrs',   label: '12 hrs · Extra Long Lasting' },
+  { value: '24 hrs',   label: '24 hrs · All Day / Night' },
 ]
 
 // Shop by Occasion
